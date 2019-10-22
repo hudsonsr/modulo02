@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import Appointment from '../models/Appointment';
+import User from '../models/User';
 
 class AppointmentController {
   async store(req, res) {
@@ -13,6 +14,16 @@ class AppointmentController {
     }
 
     const { provider_id, date } = req.body;
+
+    /**
+     * Check if provider_id is a provider
+     */
+    const isProvider = await User.findOne({});
+
+    const appointment = await Appointment.create({
+      provider_id,
+      date,
+    });
 
     return res.json();
   }
