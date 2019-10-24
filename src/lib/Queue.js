@@ -28,6 +28,7 @@ class Queue {
   /**
    * adicionar itens a fila
    */
+
   add(queue, job) {
     return this.queues[queue].bee.createJob(job).save();
   }
